@@ -9,7 +9,7 @@ mongoose.connect("mongodb://localhost/superheroes");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(express.static(__dirname+"/public"));
 
 app.get("/", function(req, res) {
   SuperHero.find(function(err, superheroes) {
