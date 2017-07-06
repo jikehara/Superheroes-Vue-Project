@@ -5,7 +5,10 @@ var app = new Vue({
   data: {
     title: title,
     heroes: undefined,
-
+    postTitle: "Create a Superhero!",
+    name: undefined,
+    superpower: undefined,
+    img: undefined
   },
   created: function() {
     this.fetchData();
@@ -20,6 +23,23 @@ var app = new Vue({
         self.heroes = response.data;
         console.log("received heroes",response);
       });
+    },
+    postHero: function() {
+      var self = this;
+      var newSuperHero = {
+        name:this.name,
+        superpower: this.superpower,
+        img: this.img
+      };
+      console.log(newSuperHero);
+      $.ajax({
+        url: "/api",
+        method: "POST",
+        data: newSuperHero
+      }).done(function(response) {
+        console.log(response.data, "Hero Created!");
+      });
     }
   }
+
 });
