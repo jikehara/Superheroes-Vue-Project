@@ -9,9 +9,12 @@ mongoose.connect("mongodb://localhost/superheroes");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// links to the public directory, our front end which has
+// index.html, hero.js, and style.css
 app.use(express.static(__dirname+"/public"));
 
-app.get("/api", function(req, res) {
+app.get("/api/heroes", function(req, res) {
   SuperHero.find(function(err, superheroes) {
     if (err) {
       res.send(err);
@@ -22,7 +25,7 @@ app.get("/api", function(req, res) {
   });
 });
 
-app.get("/api/:_id", function(req, res) {
+app.get("/api/heroes/:_id", function(req, res) {
   SuperHero.findById(req.params._id, function(err, superhero) {
     if (err) {
       res.send(err);
@@ -33,7 +36,7 @@ app.get("/api/:_id", function(req, res) {
   });
 });
 
-app.post('/api', function(req, res) {
+app.post('/api/heroes', function(req, res) {
   console.log("Hitting post route");
   var superhero = new SuperHero();
   superhero.name = req.body.name;
@@ -50,7 +53,7 @@ app.post('/api', function(req, res) {
   });
 });
 
-app.delete("/api/:_id", function(req, res) {
+app.delete("/api/heroes/:_id", function(req, res) {
   SuperHero.remove({ _id: req.params._id }, function(err) {
     if (err) {
       res.send(err);
