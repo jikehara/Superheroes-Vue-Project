@@ -13,15 +13,23 @@ app.use(express.static(__dirname+"/public"));
 
 app.get("/api", function(req, res) {
   SuperHero.find(function(err, superheroes) {
-    if (err) throw err;
-    res.json({ data: superheroes });
+    if (err) {
+      res.send(err);
+    }
+    else {
+      res.json({ data: superheroes , message: "All Heroes retrieved."});
+    }
   });
 });
 
 app.get("/api/:_id", function(req, res) {
   SuperHero.findById(req.params._id, function(err, superhero) {
-    if (err) throw err;
-    res.json({ data: superhero, message: "Hero retrieved."});
+    if (err) {
+      res.send(err);
+    }
+    else {
+      res.json({ data: superhero, message: "Hero retrieved."});
+    }
   });
 });
 
@@ -42,12 +50,16 @@ app.post('/api', function(req, res) {
   });
 });
 
-// app.delete("/:_id", function(req, res) {
-//   SuperHero.findById(req.params._id, function(err, superhero) {
-//     if (err) throw err;
-//     res.delete({ data: superhero, message: "Hero deleted."});
-//   });
-// });
+app.delete("/api/:_id", function(req, res) {
+  SuperHero.remove({ _id: req.params._id }, function(err) {
+    if (err) {
+      res.send(err);
+    }
+    else {
+      res.send("Superhero deleted!");
+    }
+  });
+});
 
 var server = app.listen(port, function() {
   console.log("Listening on port:",port);
