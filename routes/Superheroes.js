@@ -26,4 +26,9 @@ Router.route("/").get(function(req, res) {
   }
 })
 
+Router.route("/:_id").get(function(req, res) {
+  res.send("Got a hero.");
+  // Superhero.findById();
+})
+
 module.exports = Router;
