@@ -27,8 +27,14 @@ Router.route("/").get(function(req, res) {
 })
 
 Router.route("/:_id").get(function(req, res) {
-  res.send("Got a hero.");
-  // Superhero.findById();
+  // res.send("Got a hero."); // a res.send ends the route, like a break
+  Superhero.findById(req.params._id, function(err, superhero) {
+    if(err) {
+      res.send(err);
+    }else {
+      res.json({ message: "Found Superhero!", data: superhero});
+    }
+  });
 })
 
 module.exports = Router;
