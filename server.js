@@ -21,17 +21,6 @@ app.use(express.static(__dirname+"/public"));
 app.use("/api/heroes/",heroRoutes);
 app.use("/api/main/",mainRoutes);
 
-app.get("/api/heroes", function(req, res) {
-  SuperHero.find(function(err, superheroes) {
-    if (err) {
-      res.send(err);
-    }
-    else {
-      res.json({ data: superheroes , message: "All Heroes retrieved."});
-    }
-  });
-});
-
 app.get("/api/heroes/:_id", function(req, res) {
   SuperHero.findById(req.params._id, function(err, superhero) {
     if (err) {
@@ -43,22 +32,6 @@ app.get("/api/heroes/:_id", function(req, res) {
   });
 });
 
-app.post('/api/heroes', function(req, res) {
-  console.log("Hitting post route");
-  var superhero = new SuperHero();
-  superhero.name = req.body.name;
-  superhero.superpower = req.body.superpower;
-  superhero.img = req.body.img;
-
-  superhero.save().then(function(superhero) {
-    res.json({
-      message: "Hero Created!",
-      data: superhero
-    });
-  }, function(err) {
-    res.send("Failed to save :( ")
-  });
-});
 
 app.delete("/api/heroes/:_id", function(req, res) {
   SuperHero.remove({ _id: req.params._id }, function(err) {
