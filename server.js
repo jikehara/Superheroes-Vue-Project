@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // index.html, hero.js, and style.css
 app.use(express.static(__dirname+"/public"));
 // link to the routes directory
-app.use("/api/heroes",heroRoutes);
-app.use("/api/",mainRoutes);
+app.use("/api/heroes/",heroRoutes);
+app.use("/api/main/",mainRoutes);
 
 app.get("/api/heroes", function(req, res) {
   SuperHero.find(function(err, superheroes) {
