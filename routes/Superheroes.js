@@ -35,6 +35,14 @@ Router.route("/:_id").get(function(req, res) {
       res.json({ message: "Found Superhero!", data: superhero});
     }
   });
-})
+}).delete(function(req, res) {
+  Superhero.remove({ _id: req.params._id}, function(err) {
+    if(err) {
+      res.send(err);
+    }else {
+      res.send("Superhero Deleted!");
+    }
+  });
+});
 
 module.exports = Router;
