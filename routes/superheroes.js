@@ -7,7 +7,8 @@ Router.route("/")
     Superhero.find(function(err, superheroes) {
       if (err) {
         res.send(err);
-      }else {
+      }
+      else {
         res.json({message: "Heroes retrieved!", data: superheroes});
       }
     })
@@ -21,7 +22,8 @@ Router.route("/")
     superhero.save(function(err, superhero) {
       if (err) {
         res.send(err);
-      }else {
+      }
+      else {
         res.json({message: "Superhero posted: ", data: superhero})
       }
     });
@@ -33,7 +35,8 @@ Router.route("/:_id")
   Superhero.findById(req.params._id, function(err, superhero) {
     if(err) {
       res.send(err);
-    }else {
+    }
+    else {
       res.json({ message: "Found Superhero!", data: superhero});
     }
   });
@@ -42,7 +45,8 @@ Router.route("/:_id")
   Superhero.remove({ _id: req.params._id}, function(err) {
     if(err) {
       res.send(err);
-    }else {
+    }
+    else {
       res.send("Superhero Deleted!");
     }
   });

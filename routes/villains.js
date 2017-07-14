@@ -17,7 +17,8 @@ Router.route("/")
   Villain.find(function(err, villains) {
     if (err) {
       res.send(err);
-    }else {
+    }
+    else {
       res.json({message: "Villains retrieved!", data: villains});
     }
   });
@@ -33,12 +34,33 @@ Router.route("/")
   villain.save(function(err, villain) {
     if (err) {
       res.send(err);
-    }else {
+    }
+    else {
       res.json({message: "Villain posted:", data: villain});
     }
   })
 });
 
-
+Router.route("/:_id")
+  .get(function(req, res) {
+    Villain.findById(req.params._id, function(err, villain) {
+      if (err) {
+        res.send(err);
+      }
+      else {
+        res.json({message: "Found Villain!", data: villain})
+      }
+    });
+  })
+  .delete(function(req, res) {
+    Villain.remove({_id: req.params._id}, function(err) {
+      if(err) {
+        res.send(err);
+      }
+      else {
+        res.send("Villain deleted!");
+      }
+    });
+  });
 
 module.exports = Router;
