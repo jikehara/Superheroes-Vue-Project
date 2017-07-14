@@ -52,5 +52,4 @@ var app = new Vue({
       });
     }
   }
-
 });
