@@ -1,0 +1,29 @@
+body {
+  padding: 20px;
+  margin: 0;
+  background-color: blue;
+}
+
+.content {
+  background-color: #c6b4af;
+  border: solid 12px;
+  border-radius: 15px;
+}
+
+.all-hero-info {
+  border: solid 3px;
+  border-radius: 5px;
+  display: flex;
+  background-color: #ccffff;
+  margin: 5px;
+  width: calc(100%-10px);
+  justify-content: center;
+}
+
+.individual-hero-info {
+  background-color: #ccffff;
+  border: solid 6px;
+  border-radius: 15px;
+  margin: 5px;
+  width: calc(50% - 10px);
+}

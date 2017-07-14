@@ -17,7 +17,9 @@ To run the database, must always run:
 
 Then leave that terminal open
 
+To run browser-sync:
 
+  <!-- browser-sync start --server --files "*.html, css/*.css, js/*.js" -->
 
 
 

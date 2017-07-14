@@ -16,57 +16,59 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="heroStyle.css">
   </head>
   <body>
 
-    <div id="app">
+    <div class="content">
+      <div id="app-hero">
 
-      <div class="container jumbotron">
-        <h1>{{ postTitle }}</h1>
-      </div>
-      <form v-on:submit.prevent="postHero">
-        <div class="col-md-12">
-          <label>Superhero Name</label>
-          <input type="text" v-model="name"/>
+        <!-- Display all the heroes  -->
+        <div class="container jumbotron">
+          <h1>{{ title }}</h1>
         </div>
-        <div class="col-md-12">
-          <label>Superhero Power</label>
-          <input type="text" v-model="superpower"/>
+        <div class="container all-hero-info">
+          <div class="row individual-hero-info" v-for="h in heroes">
+            <div class="col-md-4 hero-name">
+              {{ h.name }}
+            </div>
+            <div class="col-md-4 hero-power">
+              {{ h.superpower }}
+            </div>
+            <div class="col-md-4 hero-img">
+              <img :src="h.img" alt=""/>
+            </div>
+            <div class="col-md-12">
+              <button type="button" class="btn btn-danger" v-on:click="deleteHero(h._id)">Delete Hero</button>
+            </div>
+          </div>
         </div>
-        <div class="col-md-12">
-          <label>Superhero Picture</label>
-          <input type="text" v-model="img"/>
-        </div>
-        <div class="col-md-12">
-          <button type="submit" class="btn btn-success">Submit Hero</button>
-        </div>
-      </form>
 
-      <div class="container jumbotron">
-        <h1>{{ title }}</h1>
-      </div>
-      <div class="container hero-info">
-        <div class="row" v-for="h in heroes">
-          <div class="col-md-4 hero-name">
-            {{ h.name }}
-          </div>
-          <div class="col-md-4 hero-power">
-            {{ h.superpower }}
-          </div>
-          <div class="col-md-4 hero-img">
-            <img :src="h.img" alt=""/>
+        <!-- Make a hero -->
+        <div class="container jumbotron">
+          <h1>{{ postTitle }}</h1>
+        </div>
+        <form v-on:submit.prevent="postHero">
+          <div class="col-md-12">
+            <label>Superhero Name</label>
+            <input type="text" v-model="name"/>
           </div>
           <div class="col-md-12">
-            <button type="button" class="btn btn-danger" v-on:click="deleteHero(h._id)">Delete Hero</button>
+            <label>Superhero Power</label>
+            <input type="text" v-model="superpower"/>
           </div>
-          <!-- <div class="col-md-12">
-            <button type="button" class="btn btn-danger" v-on:click></button>
-          </div> -->
-        </div>
+          <div class="col-md-12">
+            <label>Superhero Picture</label>
+            <input type="text" v-model="img"/>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success">Submit Hero</button>
+          </div>
+        </form>
 
       </div>
     </div>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -74,6 +76,5 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/vue"></script>
     <script type="text/javascript" src="./hero.js"></script>
-    <script type="text/css" src="style.css"></script>
   </body>
 </html>

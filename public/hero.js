@@ -1,7 +1,7 @@
 var title = "SUPERHEROES";
 
 var app = new Vue({
-  el: "#app",
+  el: "#app-hero",
   data: {
     title: title,
     heroes: undefined,

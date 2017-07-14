@@ -1,11 +1,11 @@
 var title = "SUPERVILLAINS";
 
 var app = new Vue({
-  el: "#app",
+  el: "#app-villain",
   data: {
     title: title,
     villains: undefined,
-    postTIlte: "Create a Villain!",
+    postTitle: "Create a Villain!",
     name: undefined,
     evilPower: undefined,
     img: undefined
@@ -13,7 +13,7 @@ var app = new Vue({
   created: function() {
     this.fetchData();
   },
-  methds: {
+  methods: {
     fetchData: function() {
       var self = this;
       $.ajax({
@@ -21,7 +21,7 @@ var app = new Vue({
         url:"/api/villains"
       }).done(function(response) {
         self.villains = response.data;
-        console.log("Received villains," response);
+        console.log("Received villains", response);
       });
     },
     postVillain: function() {
