@@ -46,15 +46,15 @@
       <div class="container jumbotron">
         <h1>{{ title }}</h1>
       </div>
-      <div class="container">
+      <div class="container hero-info">
         <div class="row" v-for="h in heroes">
-          <div class="col-md-4">
+          <div class="col-md-4 hero-name">
             {{ h.name }}
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 hero-power">
             {{ h.superpower }}
           </div>
-          <div class="col-md-4">
+          <div class="col-md-4 hero-img">
             <img :src="h.img" alt=""/>
           </div>
           <div class="col-md-12">
